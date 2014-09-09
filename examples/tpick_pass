@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+# Select a password from password-store (http://www.passwordstore.org/).
+# Either output it to standard output or, with -c, store it in the clipboard.
+
+local clip='n' file password
+local -a files
+
+(( 0 < $#argv )) && [[ $argv[1] == '-c' ]] && clip='y'
+
+# We're about to change directory.  If we spawn a sub-shell here, then we
+# can also safely use this as a shell function.
+(
+   cd ${PASSWORD_STORE_DIR:-$HOME/.password-store} || return 1
+   
+   files=( **/*.gpg(.) )
+   file=$( tpick ${files%.gpg} ) || return 1
+   password=$( pass show $file 2>/dev/null ) || return 1
+   
+   if [[ $clip == 'n' ]]
+   then
+      print -- $password
+   else
+      print -n -- $password | xsel
+      notify-send -t 3000 -- ${(C)file} $password
+      print -- "${(C)file}: $password"
+   fi
+)
+
