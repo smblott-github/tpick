@@ -176,7 +176,7 @@ int main(int original_argc, char *original_argv[])
    argv = original_argv;
 
    int opt;
-   while ( (opt = getopt(argc, argv, "Qp:s:PSi")) != -1 )
+   while ( (opt = getopt(argc, argv, "Qp:s:PSih")) != -1 )
    {
       switch ( opt )
       {
@@ -186,6 +186,7 @@ int main(int original_argc, char *original_argv[])
          case 'P': prefix = ""; break;
          case 'S': suffix = ""; break;
          case 'i': standard_input = 1; break;
+         case 'h':usage(0); break;
          default: usage(1);
       }
    }
