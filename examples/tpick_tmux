@@ -4,7 +4,7 @@
 # If you run multiple tmux sessions, each containing multiple windows, then
 # this script will help you jump from one to another.
 # Sample tmux binding:
-#   bind-key \; new-window -n 'switcher' "tpicktmux"
+#   bind-key \; new-window -n 'switcher' "tpick_tmux"
 
 if [[ -z $TMUX ]]
 then
