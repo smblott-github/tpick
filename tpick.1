@@ -1,0 +1,67 @@
+.TH tpick 1 "September 9, 2014" "version 1.0.0" "USER COMMANDS"
+
+.SH NAME
+.B tpick
+\-- a simple, curses-based interactive utility for picking one of a number of things
+
+.SH SYNOPSIS
+tpick [OPTIONS...] THING [THINGS...]
+.PP
+tpick -i [OPTIONS...]
+.SH DESCRIPTION
+.PP
+tpick is a simple, curses-based interactive utility for picking one of a number
+of things.  If one or more THINGS are provided on the command line, then tpick
+interactively picks one of them.  Otherwise, tpick reads lines from standard
+input and offers them for picking.
+
+
+To pick something, just start typing characters; only entries containing those characters are displayed.
+Matching is smartcase, and uses fnmatch(3).
+
+Use ENTER to exit, writing the selected element (the one at the top of the
+list) to standard output.  You can also exit (and fail) using either ESCAPE,
+Control-C or qq.  You never search for two consecutive q characters,
+right?
+
+.SH OPTIONS
+
+.TP
+-i
+read things from standard input, instead of from the command line
+
+.TP
+-p TEXT
+prepend TEXT to the fnmatch pattern (the default is "*")
+
+.TP
+-s TEXT
+append TEXT to the fnmatch pattern (the default is "*")
+
+.TP
+-P
+do not prepend anything to the fnmatch pattern
+
+.TP
+-S
+do not append anything to the fnmatch pattern
+
+.TP
+-Q
+disable the feature whereby two consecutive q characters exits
+
+.TP
+-h
+output a help message
+
+.SH SEE ALSO
+
+tpick is similar to slmenu(1), and is also similar to dmenu(1) (although for the terminal, of course).
+
+.SH EXIT STATUS
+tpick yields an exit status of 0 if a thing was successfully picked, and something else otherwise.
+
+.SH AUTHOR
+Stephen Blott (smblott AND-THAT'S-AT gmail.com).
+
+
