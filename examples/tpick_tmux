@@ -1,4 +1,5 @@
 #!/usr/bin/zsh
+# tpick example: https://github.com/smblott-github/tpick
 
 # If you run multiple tmux sessions, each containing multiple windows, then
 # this script will help you jump from one to another.

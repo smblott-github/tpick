@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+# tpick example: https://github.com/smblott-github/tpick
 
 # Select a password from password-store (http://www.passwordstore.org/).
 # Either output it to standard output or, with -c, store it in the clipboard.
