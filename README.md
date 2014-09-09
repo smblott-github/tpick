@@ -13,4 +13,6 @@ Interactively pick from standard input (with `zsh`-style read):
 
 `tpick` works like `dmenu` or `slmenu`: just start typing characters, and only entries containing those characters are displayed.  Matching is smartcase, and uses `fnmatch`.
 
-Use `ENTER` to exit, writing the selected element (the one at the top of the list) to standard output.  You can also exit (and fail) using either `ESCAPE`, `Control-C` or `qq`.  You never search for two `q` characters in a row, right?
+Use `ENTER` to exit, writing the selected element (the one at the top of the list) to standard output.  You can also exit (and fail) using either `ESCAPE`, `Control-C` or `qq`.  You never search for two consecutive `q` characters, right?
+
+There are more details in the manual page.
