@@ -18,6 +18,6 @@ With a POSIX shell or bash you can use command expansion:
 
 `tpick` works like `dmenu` or `slmenu`: just start typing characters, and only entries containing those characters are displayed.  Matching uses `fnmatch` and is smartcase (if your `fnmatch` supports GNU extensions).
 
-Use `ENTER` to exit, writing the selected element (the one at the top of the list) to standard output.  You can also exit (and fail) using either `ESCAPE`, `Control-C` or `qq`.  You never search for two consecutive `q` characters, right?
+Use `ENTER` to exit and write the selected thing (the one at the top of the list) to standard output.  You can also exit (and fail) using either `ESCAPE`, `Control-C` or `qq`.  You never search for two consecutive `q` characters, right?
 
 There are more details in the manual page.
