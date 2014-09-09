@@ -1,7 +1,8 @@
 tpick
 =====
 
-`tpick` is a simple, curses-based interactive utility for picking one of a number of things.  Here are a couple of examples...
+`tpick` is a simple, curses-based interactive utility for picking one of a
+number of things at the terminal.  Here are a couple of examples...
 
 Interactively pick a file (with `zsh`-style globing and read):
 
