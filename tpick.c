@@ -115,6 +115,8 @@ static char *prefix = "*";
 static char *suffix = "*";
 static int qq_quits = 1;
 static int standard_input = 0;
+static char **cargv = 0;
+static int cargc = 0;
 
 static int argc;
 static char **argv;
@@ -195,7 +197,7 @@ int main(int original_argc, char *original_argv[])
    argc -= optind;
 
    if ( standard_input && argc )
-      { fprintf(stderr, "reading from standard input, but extra arguments provided\n"); exit(1); }
+      { cargv = argv; cargc = argc; }
 
    if ( standard_input )
       read_standard_input();
@@ -248,8 +250,23 @@ int fn_match(char *haystack)
    { return !fnmatch(fn_pattern,haystack,fn_flag); }
 
 /* **********************************************************************
- * Display.
+ * Display and selection handling.
  */
+
+void selected(char *selection)
+{
+   if ( cargv )
+   {
+      char **command = (char **) non_null(malloc((cargc+1)*sizeof(char *)));
+      memcpy(command,cargv,(cargc)*sizeof(char *));
+      command[cargc] = selection;
+      execvp(command[0],command);
+      fprintf(stderr, "execvp failed: %s\n", command[0]);
+      exit(1);
+   }
+   else
+      printf("%s\n", selection);
+}
 
 void re_display()
    { display(0,0); }
@@ -266,7 +283,7 @@ void display(int c, char *kn)
       curses_end();
       if ( ! selection )
          exit(1);
-      printf("%s\n", selection);
+      selected(selection);
       exit(0);
    }
 
