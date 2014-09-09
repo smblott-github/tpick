@@ -1,4 +1,6 @@
 
+.PHONY: build install
+
 target = tpick
 prefix ?= /usr/local
 
