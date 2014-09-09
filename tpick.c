@@ -21,6 +21,33 @@
 #endif
 
 /* **********************************************************************
+ * Usage.
+ */
+
+char *usage_message[] =
+   {
+      "tpick [OPTIONS...] [THINGS...]",
+      "OPTIONS:",
+      "   -i      : read things from standard input, instead of from the command line",
+      "   -p TEXT : prepend TEXT to fnmatch pattern (default is \"*\")",
+      "   -s TEXT : append TEXT to fnmatch pattern (default is \"*\")",
+      "   -P      : equivalent to -p \"\"",
+      "   -S      : equivalent to -s \"\"",
+      "   -Q      : disable exit (and fail) on two consecutive q characters",
+      "   -h      : output this help message",
+      0
+   };
+
+void usage(int status)
+{
+   int i;
+   FILE *file = status ? stderr : stdout;
+   for (i=0; usage_message[i]; i+=1)
+      fprintf(file,"%s\n", usage_message[i]);
+   exit(status);
+}
+
+/* **********************************************************************
  * Start/end curses.
  */
 
@@ -159,7 +186,7 @@ int main(int original_argc, char *original_argv[])
          case 'P': prefix = ""; break;
          case 'S': suffix = ""; break;
          case 'i': standard_input = 1; break;
-         default: exit(1);
+         default: usage(1);
       }
    }
 

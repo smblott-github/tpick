@@ -5,7 +5,7 @@ prefix ?= /usr/local
 build: $(target)
 	@true
 
-install:
+install: $(target)
 	install -m 0555 $(target) $(prefix)/bin/$(target)
 
 %: %.c
