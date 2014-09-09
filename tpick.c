@@ -253,7 +253,7 @@ int fn_match(char *haystack)
  * Display and selection handling.
  */
 
-void selected(char *selection)
+void handle_selection(char *selection)
 {
    if ( cargv )
    {
@@ -283,7 +283,7 @@ void display(int c, char *kn)
       curses_end();
       if ( ! selection )
          exit(1);
-      selected(selection);
+      handle_selection(selection);
       exit(0);
    }
 
