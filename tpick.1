@@ -8,13 +8,14 @@
 tpick [OPTIONS...] THING [THINGS...]
 .PP
 tpick -i [OPTIONS...]
+.PP
+tpick -i [OPTIONS...] COMMAND [ARGUMENTS...]
 .SH DESCRIPTION
 .PP
 tpick is a simple, curses-based interactive utility for picking one of a number
 of things.  If one or more THINGS are provided on the command line, then tpick
 interactively picks one of them.  Otherwise, tpick reads lines from standard
 input and offers them for picking.
-
 
 To pick something, just start typing characters; only entries containing those characters are displayed.
 Matching is smartcase, and uses fnmatch(3).
@@ -28,7 +29,11 @@ right?
 
 .TP
 -i
-read things from standard input, instead of from the command line
+read things from standard input (one per line), instead of from the command line
+
+.TP
+-i [OPTIONS] COMMAND [ARGUMENTS...]
+read things from standard input, and execute the indicated command with the selected thing as an additional argument
 
 .TP
 -p TEXT
