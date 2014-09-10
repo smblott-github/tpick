@@ -14,7 +14,11 @@ Interactively pick from standard input (with `zsh`-style read):
 
 With a POSIX shell or bash you can use command expansion:
 
-    number=`seq 100 | tpick -i`
+    number=$(seq 100 | tpick -i)
+
+Execute a command with the picked thing as an argument:
+
+    ls -1 *.coffee | tpick -i coffee -c
 
 `tpick` works like `dmenu` or `slmenu`: just start typing characters, and only entries containing those characters are displayed.  Matching uses `fnmatch` and is smartcase (if your `fnmatch` supports GNU extensions).
 
