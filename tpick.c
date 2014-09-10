@@ -28,7 +28,8 @@ char *usage_message[] =
    {
       "tpick [OPTIONS...] [THINGS...]",
       "OPTIONS:",
-      "   -i      : read things from standard input, instead of from the command line",
+      "   -i      : read things from standard input (one per line), instead of from the command line",
+      "   -I      : read things from standard input (whitespace separated), instead of from the command line",
       "   -p TEXT : prepend TEXT to fnmatch pattern (default is \"*\")",
       "   -s TEXT : append TEXT to fnmatch pattern (default is \"*\")",
       "   -P      : equivalent to -p \"\"",
@@ -149,7 +150,14 @@ void quit(const int c, const char *kn)
 
 #define MAX_LINE 4096
 
-void read_standard_input()
+void add_thing(char *buf)
+{
+   argv = (char **) non_null(realloc(argv,(argc+1)*sizeof(char *)));
+   argv[argc] = (char *) non_null(strdup(buf));
+   argc += 1;
+}
+
+void read_standard_input_lines()
 {
    char buf[MAX_LINE];
 
@@ -158,9 +166,25 @@ void read_standard_input()
    {
       char *newline = strchr(buf,'\n');
       if ( newline ) newline[0] = 0;
-      argv = (char **) non_null(realloc(argv,(argc+1)*sizeof(char *)));
-      argv[argc] = (char *) non_null(strdup(buf));
-      argc += 1;
+      add_thing(buf);
+   }
+}
+
+const char whitespace[] = " \t\b\v\r\n";
+
+void read_standard_input_words()
+{
+   char buf[MAX_LINE];
+
+   argc = 0; argv = 0;
+   while ( fgets(buf,MAX_LINE,stdin) )
+   {
+      char *tok = strtok(buf,whitespace);
+      while ( tok )
+      {
+         add_thing(tok);
+         tok = strtok(NULL,whitespace);
+      }
    }
 }
 
@@ -178,7 +202,7 @@ int main(int original_argc, char *original_argv[])
    argv = original_argv;
 
    int opt;
-   while ( (opt = getopt(argc, argv, "Qp:s:PSih")) != -1 )
+   while ( (opt = getopt(argc, argv, "Qp:s:PSiIh")) != -1 )
    {
       switch ( opt )
       {
@@ -188,6 +212,7 @@ int main(int original_argc, char *original_argv[])
          case 'P': prefix = ""; break;
          case 'S': suffix = ""; break;
          case 'i': standard_input = 1; break;
+         case 'I': standard_input = 2; break;
          case 'h':usage(0); break;
          default: usage(1);
       }
@@ -199,8 +224,8 @@ int main(int original_argc, char *original_argv[])
    if ( standard_input && argc )
       { cargv = argv; cargc = argc; }
 
-   if ( standard_input )
-      read_standard_input();
+   if ( standard_input == 1 ) read_standard_input_lines();
+   if ( standard_input == 2 ) read_standard_input_words();
 
    if ( argc == 0 )
       { fprintf(stderr, "nothing from which to pick\n"); exit(1); }
