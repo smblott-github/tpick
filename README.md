@@ -8,6 +8,8 @@ Here are a couple of examples...
     cd /etc
     tpick *
 
+Then type `de`, and the screen looks like...
+
 ![screenshot](https://raw.githubusercontent.com/smblott-github/tpick/master/misc/screenshot1.png)
 
 Interactively pick a file (with `zsh`-style globing and read):
