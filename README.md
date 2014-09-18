@@ -8,6 +8,7 @@ Here are some of its (simple, but) great features:
 
 - Hit `SPACE` to add the `*` wildcard; so, super-fast matching of multiple parts of the thing you're looking for.
 - Two consecutive `q` characters quits (by default); super easy and quick to type.
+- Pick your favourite with one key, `;`.  Use the `-f` option to set your favourite text.  Then, when `;` is pressed, that text is added to the search.  I use this for returning to my "home" tmux session.
 - And smartcase, of course.
 
 And here are a couple of examples...
