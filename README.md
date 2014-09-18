@@ -16,6 +16,7 @@ Here are some of its (simple, but) great features:
 
 - Hit `SPACE` to add the `*` wildcard; so, super-fast matching of multiple parts of the thing you're looking for.
 - Two consecutive `q` characters quits (by default); super easy and quick to type.
+- And smartcase, of course.
 
 Interactively pick a file (with `zsh`-style globing and read):
 
