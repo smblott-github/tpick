@@ -32,6 +32,7 @@ char *usage_message[] =
       "   -I      : read things from standard input (whitespace separated), instead of from the command line",
       "   -p TEXT : prepend TEXT to fnmatch pattern (default is \"*\")",
       "   -s TEXT : append TEXT to fnmatch pattern (default is \"*\")",
+      "   -f TEXT : set your favourite text, which is added to the search when you type ';'",
       "   -P      : equivalent to -p \"\"",
       "   -S      : equivalent to -s \"\"",
       "   -Q      : disable exit (and fail) on two consecutive q characters",
@@ -118,6 +119,7 @@ static int qq_quits = 1;
 static int standard_input = 0;
 static char **cargv = 0;
 static int cargc = 0;
+static char *favourite = 0;
 
 static int argc;
 static char **argv;
@@ -202,7 +204,7 @@ int main(int original_argc, char *original_argv[])
    argv = original_argv;
 
    int opt;
-   while ( (opt = getopt(argc, argv, "Qp:s:PSiIh")) != -1 )
+   while ( (opt = getopt(argc, argv, "Qp:s:PSiIhf:")) != -1 )
    {
       switch ( opt )
       {
@@ -213,6 +215,7 @@ int main(int original_argc, char *original_argv[])
          case 'S': suffix = ""; break;
          case 'i': standard_input = 1; break;
          case 'I': standard_input = 2; break;
+         case 'f': favourite = optarg; break;
          case 'h':usage(0); break;
          default: usage(1);
       }
@@ -314,6 +317,14 @@ void display(int c, char *kn)
 
    if ( !search )
       search = (char *) non_null(strdup(""));
+
+   if ( c == ';' && favourite )
+   {
+      char *ptr;
+      for (ptr=favourite; ptr[0]; ptr+=1)
+         display(ptr[0],0);
+      return;
+   }
 
    if ( kn && strcmp(kn,"KEY_DOWN") == 0 )
       { offset += 1; c = 0; }
