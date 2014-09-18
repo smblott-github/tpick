@@ -2,7 +2,7 @@ tpick
 =====
 
 `tpick` is a simple, curses-based, interactive utility for picking one of a
-number of things at the terminal.
+number of things at the terminal.  See the examples in the `examples` directory.
 
 Here are some of its (simple, but) great features:
 
