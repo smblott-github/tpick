@@ -1,5 +1,4 @@
 #!/usr/bin/zsh
-# tpick example: https://github.com/smblott-github/tpick
 
 # If you run multiple tmux sessions, each containing multiple windows, then
 # this script will help you jump from one to another.
@@ -20,7 +19,7 @@ do
    tmux list-windows -t $session -F "#{session_name}:#{window_name}"
 done | grep -v ':switcher\>' | tr '\n' ' ' | read -A targets
 
-target=$(tpick $targets) || return 1
+target=$(tpick -f "main" $targets) || return 1
 
 tmux switch-client -t ${target%%:*}
 tmux select-window -t $target
