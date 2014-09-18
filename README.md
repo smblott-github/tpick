@@ -1,7 +1,7 @@
 tpick
 =====
 
-`tpick` is a simple, curses-based interactive utility for picking one of a
+`tpick` is a simple, curses-based, interactive utility for picking one of a
 number of things at the terminal.
 Here are a couple of examples...
 
@@ -11,6 +11,11 @@ Here are a couple of examples...
 Then type `de`, and the screen looks like...
 
 ![screenshot](https://raw.githubusercontent.com/smblott-github/tpick/master/misc/screenshot1.png)
+
+Here are some of its (simple, but) great features:
+
+- Hit `SPACE` to add the `*` wildcard.
+- Two consecutive `q` characters quits (by default).
 
 Interactively pick a file (with `zsh`-style globing and read):
 
