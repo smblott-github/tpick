@@ -3,7 +3,14 @@ tpick
 
 `tpick` is a simple, curses-based, interactive utility for picking one of a
 number of things at the terminal.
-Here are a couple of examples...
+
+Here are some of its (simple, but) great features:
+
+- Hit `SPACE` to add the `*` wildcard; so, super-fast matching of multiple parts of the thing you're looking for.
+- Two consecutive `q` characters quits (by default); super easy and quick to type.
+- And smartcase, of course.
+
+And here are a couple of examples...
 
     cd /etc
     tpick *
@@ -11,12 +18,6 @@ Here are a couple of examples...
 Then type `de`, and the screen looks like...
 
 ![screenshot](https://raw.githubusercontent.com/smblott-github/tpick/master/misc/screenshot1.png)
-
-Here are some of its (simple, but) great features:
-
-- Hit `SPACE` to add the `*` wildcard; so, super-fast matching of multiple parts of the thing you're looking for.
-- Two consecutive `q` characters quits (by default); super easy and quick to type.
-- And smartcase, of course.
 
 Interactively pick a file (with `zsh`-style globing and read):
 
